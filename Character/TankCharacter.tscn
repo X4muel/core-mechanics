@@ -62,9 +62,8 @@ _data = {
 size = Vector2(16, 16)
 
 [node name="TankCharacter" type="CharacterBody2D" unique_id=1050545073]
+collision_mask = 3
 script = ExtResource("1_8evnh")
-speed = null
-rotation_speed = null
 bullet_scene = ExtResource("2_1py31")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=648073518]
