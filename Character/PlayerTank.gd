@@ -3,9 +3,12 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @export var rotation_speed: float = 20.0 # Aumentei um pouco pra não ficar lerdo
 
+@export var bullet_scene: PackedScene
+
+var input_vector = Vector2.ZERO
+
 func _physics_process(_delta: float) -> void:
-	var input_vector := Vector2.ZERO
-	
+	input_vector = Vector2.ZERO
 	if Input.is_action_pressed("ui_right"):
 		input_vector.x = 1
 	elif Input.is_action_pressed("ui_left"):
@@ -32,3 +35,14 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 		
 	move_and_slide()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fire"):
+		shoot_bullet()
+
+func shoot_bullet() -> void:
+	var bullet_instance = bullet_scene.instantiate()
+	bullet_instance.position = position
+	bullet_instance.rotation = rotation
+	bullet_instance.direction = Vector2.RIGHT.rotated(rotation)
+	get_parent().add_child(bullet_instance)

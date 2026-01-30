@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c2wa1pqk6sxw"]
 
 [ext_resource type="Script" uid="uid://cjnsekdxa8w4" path="res://Character/PlayerTank.gd" id="1_8evnh"]
+[ext_resource type="PackedScene" uid="uid://djri0n2xanff2" path="res://Character/Bullet.tscn" id="2_1py31"]
 [ext_resource type="Texture2D" uid="uid://b6xs6vji6mxhh" path="res://Character/Tank1.png" id="2_otehv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1py31"]
@@ -8,8 +9,7 @@ size = Vector2(16, 16)
 
 [node name="TankCharacter" type="CharacterBody2D" unique_id=1050545073]
 script = ExtResource("1_8evnh")
-speed = null
-rotation_speed = null
+bullet_scene = ExtResource("2_1py31")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=648073518]
 texture = ExtResource("2_otehv")
