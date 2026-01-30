@@ -4,15 +4,76 @@
 [ext_resource type="PackedScene" uid="uid://djri0n2xanff2" path="res://Character/Bullet.tscn" id="2_1py31"]
 [ext_resource type="Texture2D" uid="uid://b6xs6vji6mxhh" path="res://Character/Tank1.png" id="2_otehv"]
 
+[sub_resource type="Animation" id="Animation_otehv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1py31"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mvgnt"]
+resource_name = "move"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iki40"]
+_data = {
+&"RESET": SubResource("Animation_otehv"),
+&"idle": SubResource("Animation_1py31"),
+&"move": SubResource("Animation_mvgnt")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1py31"]
 size = Vector2(16, 16)
 
 [node name="TankCharacter" type="CharacterBody2D" unique_id=1050545073]
 script = ExtResource("1_8evnh")
+speed = null
+rotation_speed = null
 bullet_scene = ExtResource("2_1py31")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=648073518]
 texture = ExtResource("2_otehv")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1544519365]
+libraries/ = SubResource("AnimationLibrary_iki40")
+autoplay = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=178850012]
 shape = SubResource("RectangleShape2D_1py31")
